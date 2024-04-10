@@ -4,13 +4,11 @@ import "./App.css";
 type List = {
   id: string;
   title: string;
-  date: string;
 };
 
 function App() {
   const [lists, setLists] = useState<List[]>([]);
-  // const [title, setTitle] = useState("");
-  // const [date, setDate] = useState("");
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
     async function getLists() {
@@ -21,27 +19,25 @@ function App() {
     getLists();
   }, []);
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   const res = await fetch(
-  //     import.meta.env.VITE_APP_API_URL + "/lists", 
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       list: {
-  //         title,
-  //         date,
-  //       },
-  //     }),
-  //   });
-  //   const data = await res.json();
-  //   setLists(data.lists);
-  //   setTitle("");
-  //   setDate("");
-  // };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const res = await fetch(
+      import.meta.env.VITE_APP_API_URL + "/lists", 
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        list: {
+          title,
+        },
+      }),
+    });
+    const data = await res.json();
+    setLists(data.lists);
+    setTitle("");
+  };
 
   return (
     <div className="App">
@@ -49,12 +45,11 @@ function App() {
         {lists.map((list) => (
           <div key={list.id}>
             <h2>{list.title}</h2>
-            <p>{list.date}</p>
           </div>
         ))}
       </div>
       
-      {/* <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
   <h2>Add To Do List</h2>
   <input
     type="text"
@@ -63,15 +58,8 @@ function App() {
     value={title}
     onChange={(e) => setTitle(e.target.value)}
   />
-  <input
-    type="text"
-    name="date"
-    placeholder="Date"
-    value={date}
-    onChange={(e) => setDate(e.target.value)}
-  />
   <button type="submit">Add</button>
-</form> */}
+</form> 
 
     </div>
   );
