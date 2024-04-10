@@ -7,17 +7,14 @@ const fakeLists = [
   { 
     id: "1", 
     title: "Throw Garbage Away",
-    date: "2021-10-01"
   },
   { 
     id: "2", 
     title: "Buy Groceries",
-    date: "2021-10-02"
   },
   { 
     id: "3", 
     title: "Do Laundry",
-    date: "2021-10-03"
   }
 ];
 
@@ -32,7 +29,7 @@ app.post("/lists", async (c) => {
     ...list, 
     id: (fakeLists.length + 1).toString() 
   })
-    return c.json({ list: fakeLists });
+    return c.json({ lists: fakeLists });
 });
 
 export const handler = handle(app);
