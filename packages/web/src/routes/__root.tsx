@@ -7,8 +7,11 @@ export const Route = createRootRoute({
         <Link to="/" className="[&.active]:font-bold">
           Home
         </Link>{' '}
-        <Link to="/about" className="[&.active]:font-bold">
-          About
+        <Link to="/all-lists" className="[&.active]:font-bold">
+          All List
+        </Link>{' '}
+        <Link to="/create" className="[&.active]:font-bold">
+          Create
         </Link>{' '}
         <Link to="/profile" className="[&.active]:font-bold">
           Profile

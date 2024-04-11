@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute } from '@tanstack/react-router';
 
 
-export const Route = createFileRoute('/_authenticated/')({
+export const Route = createFileRoute('/_authenticated/all-lists')({
   component: HomePage,
 })
 
