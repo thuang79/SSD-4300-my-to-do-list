@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import { createFileRoute } from '@tanstack/react-router';
+
+
+export const Route = createFileRoute('/')({
+  component: HomePage,
+})
 
 type List = {
   id: string;
   title: string;
 };
 
-function App() {
+function HomePage() {
   const [lists, setLists] = useState<List[]>([]);
   const [title, setTitle] = useState("");
 
@@ -64,5 +69,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
