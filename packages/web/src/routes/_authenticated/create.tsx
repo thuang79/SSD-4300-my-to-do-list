@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 
-export const Route = createFileRoute('/create')({
+export const Route = createFileRoute('/_authenticated/create')({
   component: CreatePage,
 })
 

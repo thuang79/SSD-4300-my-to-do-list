@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 
 
-export const Route = createFileRoute('/all-lists')({
+export const Route = createFileRoute('/_authenticated/all-lists')({
   component: HomePage,
 })
 

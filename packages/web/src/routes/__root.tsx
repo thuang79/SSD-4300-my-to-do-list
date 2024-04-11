@@ -1,24 +1,56 @@
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import { Outlet, Link } from "@tanstack/react-router";
 
-export const Route = createRootRoute({
-  component: () => (
+import { type QueryClient } from "@tanstack/react-query";
+
+import { createRootRouteWithContext } from "@tanstack/react-router";
+
+import { NotFound } from "../components/not-found";
+
+import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
+
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
+  component: RootLayout,
+  notFoundComponent: NotFound,
+});
+
+function RootLayout() {
+  const { isAuthenticated } = useKindeAuth();
+  return (
     <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
+      <div className="py-2 flex max-w-2xl mx-auto justify-between items-center ">
+        <Link to="/" className="text-2xl">
           Home
-        </Link>{' '}
-        <Link to="/all-lists" className="[&.active]:font-bold">
-          All List
-        </Link>{' '}
-        <Link to="/create" className="[&.active]:font-bold">
-          Create
-        </Link>{' '}
-        <Link to="/profile" className="[&.active]:font-bold">
-          Profile
         </Link>
-      </div>
+        {/* <div className="flex gap-x-4"> */}
+          {" "}
+          <Link
+            to="/all-lists"
+            className="[&.active]:text-foreground text-muted-foreground hover:text-foreground transition-colors"
+          >
+            All Lists
+          </Link>{" "}
+          <Link
+            to="/create"
+            className="[&.active]:text-foreground text-muted-foreground hover:text-foreground transition-colors"
+          >
+            New List
+          </Link>{" "}
+          {isAuthenticated && (
+            <Link
+              to="/profile"
+              className="[&.active]:text-foreground text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Profile
+            </Link>
+          )}
+        </div>
+      {/* </div> */}
       <hr />
-      <Outlet />
+      <div className="bg-background text-foreground flex flex-col m-10 gap-y-10 max-w-2xl mx-auto">
+        <Outlet />
+      </div>
     </>
-  ),
-})
+  );
+}
