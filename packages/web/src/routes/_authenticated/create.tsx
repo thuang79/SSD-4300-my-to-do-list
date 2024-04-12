@@ -1,6 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
+import { useKindeAuth } from '@kinde-oss/kinde-auth-react';
+
 
 export const Route = createFileRoute('/_authenticated/create')({
   component: CreatePage,
@@ -13,6 +15,7 @@ type List = {
 };
 
 function CreatePage(){
+  const { getToken } = useKindeAuth();
   const navigate = useNavigate({from: "/create"})
 
     const [title, setTitle] = useState("");
@@ -20,15 +23,15 @@ function CreatePage(){
     async function handleSubmit(e: React.FormEvent) {
       e.preventDefault();
       try {
-          // const token = await getToken();
-          // if (!token) {
-          //     throw new Error("No token found");
-          // }
+          const token = await getToken();
+          if (!token) {
+              throw new Error("No token found");
+          }
           const res = await fetch(import.meta.env.VITE_APP_API_URL + "/lists", {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
-                  // Authorization: token,
+                  Authorization: token,
               },
               body: JSON.stringify({
                   list: {
