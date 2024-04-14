@@ -1,14 +1,13 @@
 import { createMiddleware } from "hono/factory";
 import type { LambdaEvent, LambdaContext } from "hono/aws-lambda";
 
-
 type EnhancedLambdaEvent = LambdaEvent & {
   requestContext?: {
     authorizer?: {
       jwt?: {
         claims: {
-          sub: string
-        }
+          sub: string;
+        };
       };
     };
   };
@@ -16,7 +15,7 @@ type EnhancedLambdaEvent = LambdaEvent & {
 
 type AuthEnv = {
   Variables: {
-    userId: string;
+    userId: string
   },
   Bindings: {
     event: EnhancedLambdaEvent

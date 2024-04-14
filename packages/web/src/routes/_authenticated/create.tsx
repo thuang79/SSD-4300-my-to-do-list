@@ -49,7 +49,7 @@ function CreatePage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md w-full bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Create List</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Create a Task</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"

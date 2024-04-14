@@ -43,14 +43,18 @@ function HomePage() {
       <h2 className="text-2xl font-bold text-gray-900 mb-4">To Do List</h2>
       {error ? (
         <p className="text-red-500">An error has occurred: {error.message}</p>
-      ) : (
+      ) : data && data.lists.length > 0 ? (
         <ul className="list-disc list-inside bg-white rounded-lg p-4 shadow-md max-w-md w-full">
-          {data?.lists.map((list) => (
+          {data.lists.map((list) => (
             <li key={list.id} className="border-b last:border-b-0 py-2">
               {list.title}
             </li>
           ))}
         </ul>
+      ) : (
+        <p className="text-gray-700 text-lg">
+          Your list is empty. Let's add some tasks to make today productive! 
+        </p>
       )}
     </div>
   );

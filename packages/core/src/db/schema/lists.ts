@@ -2,11 +2,8 @@ import {
     pgTable,
     text,
     varchar,
-    // timestamp,
     index,
-    // numeric,
     serial,
-    // date,
 }   from "drizzle-orm/pg-core";
 
 export const lists = pgTable(

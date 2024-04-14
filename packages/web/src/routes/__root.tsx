@@ -21,10 +21,10 @@ function RootLayout() {
         </Link>
         <div className="flex gap-4">
           <Link to="/all-lists" className="hover:text-gray-300">
-            All Lists
+            All Tasks
           </Link>
           <Link to="/create" className="hover:text-gray-300">
-            New List
+            Add a task
           </Link>
           {isAuthenticated && (
             <Link to="/profile" className="hover:text-gray-300">
